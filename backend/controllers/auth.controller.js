@@ -116,7 +116,12 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   const took = req.cookies.token;
-  res.clearCookie("token");
+  res.cookie("token", "", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    expires: new Date(0), // Explicitly set expiration to clear the cookie
+  });  
   res.status(200).json({
     logout: true,
     message: "logout Successfull",
