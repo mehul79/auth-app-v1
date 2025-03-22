@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import {
   AnimatedSpan,
@@ -10,38 +10,13 @@ import {
   TypingAnimation,
 } from "@/components/magicui/terminal";
 import { TerminalSkeleton } from "@/components/TerminalSkeleton";
+import { useAuthStore } from "@/store/authStore";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-
-  useEffect(() => {
-    const checkLogged = async () => {
-      try {
-        // console.log("hi", process.env.NEXT_PUBLIC_BACKEND_URL);
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/verifyuser`,
-          {
-            withCredentials: true
-          }
-        );
-
-        if (response.status !== 200) {
-          router.push("/login");
-          return;
-        }
-        console.log(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Verification failed:", error);
-        router.push("/login");
-      }
-    };
-    checkLogged();
-  }, [router]);
+  const {authUser, checkAuth, loading } = useAuthStore();
 
   const logout = async()=>{
-
     try {
       const response = await toast.promise(
         axios.post(
@@ -72,20 +47,29 @@ export default function Home() {
     
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-      <TerminalSkeleton />
-    </div>
-    );
-  }
+    useEffect(()=>{
+      checkAuth()
+    }, [checkAuth])
 
-  return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <TerminalDemo />
-      <Button onClick={logout} className="mt-2">Logout</Button>
-    </div>
-  );
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center h-screen">
+        <TerminalSkeleton />
+      </div>
+      );
+    }
+
+    if (authUser === false) {
+      router.push("/login");
+      return null; // Prevents rendering anything during redirection
+    }
+
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <TerminalDemo />
+        <Button onClick={logout} className="mt-2">Logout</Button>
+      </div>
+    );
 }
 
 
