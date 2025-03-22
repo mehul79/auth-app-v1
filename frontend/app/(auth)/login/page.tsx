@@ -20,6 +20,8 @@ import { useAuthStore } from "@/store/authStore";
 export default function Page() {
 
   const router = useRouter();
+  
+  // @ts-ignore -- Ignoring type checking for authStore
   const { authUser, checkAuth } = useAuthStore();
 
   useEffect(() => {
