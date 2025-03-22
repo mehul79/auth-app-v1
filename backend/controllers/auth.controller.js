@@ -229,7 +229,9 @@ export const verifyUser = async (req, res) => {
     try {
       // Get token from cookies
       const token = req.cookies?.token; // Safely access cookies
-  
+      console.log(token);
+
+      
       // If no token provided, return unauthorized
       if (!token) {
         return res.status(401).json({
