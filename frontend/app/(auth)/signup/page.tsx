@@ -34,9 +34,15 @@ const formSchema = z.object({
   password: z.string().min(4, "Password must be at least 8 characters"),
 });
 
+type AuthStore = {
+  authUser: boolean;
+  checkAuth: () => void;
+};
+
+
 export default function Page() {
   const router = useRouter();
-  const { authUser, checkAuth } = useAuthStore();
+  const { authUser, checkAuth } = useAuthStore() as AuthStore;
 
   useEffect(() => {
     checkAuth();

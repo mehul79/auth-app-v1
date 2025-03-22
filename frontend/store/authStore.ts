@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 export const useAuthStore = create((set) => ({
-  authUser: false,
+   authUser: false,
 
   checkAuth: async () => {
     try {
