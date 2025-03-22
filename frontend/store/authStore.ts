@@ -19,7 +19,7 @@ export const useAuthStore = create((set) => ({
         set({ authUser: false });
       }
     } catch (error) {
-      console.error("Error while calling verifyuser endpoint:", error.message);
+      console.error("Error while calling verifyuser endpoint:", error);
       set({ authUser: false });
     }
   },
