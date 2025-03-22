@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { redirect, useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import {
   Form,
