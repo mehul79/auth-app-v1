@@ -7,8 +7,7 @@ export const useAuthStore = create((set) => ({
   checkAuth: async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/verifyuser`,
-        {
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/verifyUser`,{
           withCredentials: true,
         }
       );
