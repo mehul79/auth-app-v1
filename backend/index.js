@@ -15,7 +15,7 @@ app.use(cookieParser()); // Parse cookies
 
 app.use(
   cors({
-    origin: [`${process.env.NEXT_PUBLIC_URL}`, "http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://auth-app-v1.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]

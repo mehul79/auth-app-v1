@@ -12,6 +12,8 @@ export const useAuthStore = create((set) => ({
         }
       );
 
+      console.log("Request Headers:", response.config.headers);
+
       if (response.status === 200) {
         set({ authUser: true });
       } else {
