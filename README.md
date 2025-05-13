@@ -63,7 +63,7 @@ NEXT_PUBLIC_BACKEND_URL=https://be-auth-app-v1.vercel.app/api/auth
 ## Deployment
 
 ### Backend Deployment
-- The backend is deployed on Render (`https://be-auth-app-v1.vercel.app/api/auth`).
+- The backend is deployed on Render (`https://auth-app-v1.onrender.com/api/auth`).
 - Make sure to update `NODE_ENV=production` in `.env` before deploying.
 
 ### Frontend Deployment
